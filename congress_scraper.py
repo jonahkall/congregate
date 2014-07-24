@@ -5,6 +5,8 @@ import socket
 import time
 import lxml.html
 import itertools
+import cp_namer
+
 
 class CongressPerson(object):
 	def __init__(self, name):
@@ -48,14 +50,20 @@ for i in range(len(urllist)):
 		for number in senate_bill_nums:
 			senate_final_urls.append('http://thomas.loc.gov/cgi-bin/bdquery/z?d' + str(congress_range[i]) + ':SN'+ str(number) +':@@@L&summ2=m&')
 		for url_ind in range(len(senate_final_urls)):
+			print senate_final_urls[url_ind]
 			request = urllib2.Request(senate_final_urls[url_ind])
 			response = urllib2.urlopen(request)
 			bill_page = response.read()
 			bill_soup = BeautifulSoup(bill_page)
+			i = 0
 			for aref in bill_soup.find_all('a'):
 				match = re.search("FLD003",str(aref))
-				if match:
+				if match and i == 0:
 					print "Bill number ", senate_bill_nums[url_ind],"sponsored by: ", aref.string
+					i+=1
+				elif match and i != 0:
+					print "Bill number ", senate_bill_nums[url_ind],"cosponsored by: ", aref.string
+
 	
 	#for house_url in house_bill_table_urls:
 	#	print "*** ABOUT TO VISIT: " + house_url + " ***"
