@@ -6,6 +6,5 @@ def proper_name_s(senator):
 	last_name = senator[0][3:]
 	return first_name+last_name
 
-
-assert(proper_name("Sen Humphrey, Gordon J.") == "Gordon J. Humphrey")
-assert(proper_name("Sen Roth Jr., William V.") == "William V. Roth Jr.")
+assert(proper_name_s("Sen Humphrey, Gordon J.") == "Gordon J. Humphrey")
+assert(proper_name_s("Sen Roth Jr., William V.") == "William V. Roth Jr.")
