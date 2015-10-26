@@ -1,10 +1,10 @@
-# Module for extracting proper names of senators
+# Module for extracting proper names of congresspersons
 
-def proper_name_s(senator):
-	senator = senator.split(",")
-	first_name = senator[1][1:]
-	last_name = senator[0][3:]
+def proper_name(congressperson):
+	congressperson = congressperson.split(",")
+	first_name = congressperson[1][1:]
+	last_name = congressperson[0][3:]
 	return first_name+last_name
 
-assert(proper_name_s("Sen Humphrey, Gordon J.") == "Gordon J. Humphrey")
-assert(proper_name_s("Sen Roth Jr., William V.") == "William V. Roth Jr.")
+assert(proper_name("Sen Humphrey, Gordon J.") == "Gordon J. Humphrey")
+assert(proper_name("Sen Roth Jr., William V.") == "William V. Roth Jr.")
